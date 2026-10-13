@@ -505,7 +505,7 @@ footer a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
   <div class="bio rise">
     <p>I work on computer vision and generative world models — systems that learn the dynamics of an environment well enough to simulate it, and run fast enough to be useful outside a datacenter.</p>
-    <p>My recent work spans diffusion-based conditional world models that learn reactive agent behavior; self-supervised JEPA world models trained from raw pixels, with frozen latent representations and PPO policies for real-time human-versus-agent Atari; SAM-guided pose estimation with Kalman-smoothed trajectories for world model supervision; and 4-bit NF4 QLoRA adaptation of vision-language-action models for edge robotics. I am seeking research internships and collaborations.</p>
+    <p>My recent work spans diffusion-based conditional world models ; self-supervised JEPA world models trained from raw pixels, with frozen latent representations and PPO policies for real-time human-versus-agent Atari; SAM-guided pose estimation with Kalman-smoothed trajectories for world model supervision; and 4-bit NF4 QLoRA adaptation of vision-language-action models for edge robotics. I am seeking research internships and collaborations.</p>
   </div>
 
   <div class="contact-line rise">
@@ -573,7 +573,8 @@ footer a:hover { color: var(--accent); border-bottom-color: var(--accent); }
     <details class="more">
       <summary><span class="chev"></span><span class="lbl-shut">Details</span><span class="lbl-open">Hide details</span></summary>
       <div class="more-body">
-        Swept LoRA adapter ranks 4–32 across 20–100 demonstration scales to find where adapter capacity stops mattering. Reached ~62 ms/step inference on ALOHA Sim and LIBERO with no measurable accuracy degradation against the full-precision baseline.
+        <p><strong>Memory-efficient adaptation for edge robotics.</strong> Implemented a QLoRA fine-tuning pipeline with 4-bit NF4 quantisation and targeted LoRA adapters over a cached BF16 backbone, reducing the model memory footprint by roughly 4&times;. Integrated a 768-dimensional spatial encoder for spatial inputs.</p>
+        <p><strong>Adapter and data-scale evaluation.</strong> Compared LoRA ranks 4, 8, 16 and 32 using 20, 50 and 100 demonstrations. Evaluated on ALOHA Sim Transfer Cube and LIBERO, reaching ~62 ms per inference step with no measurable accuracy degradation against the full-precision baseline.</p>
       </div>
     </details>
     <div class="tags"><span>QLoRA</span><span>Robotics</span><span>Quantisation</span></div>
@@ -583,7 +584,14 @@ footer a:hover { color: var(--accent); border-bottom-color: var(--accent); }
     <div class="entry-head">
       <div class="entry-title">Segmentation-guided pose estimation for retro environments</div>
     </div>
-    <p class="note">Pose estimation pipeline for Tekken 3 using SAM for character masking and Kalman filtering for temporal trajectory smoothing, producing high-fidelity latent pose ground truth for world model training.</p>
+    <p class="note">A Tekken 3 pose pipeline that uses SAM character masks and Kalman-filtered keypoint tracks to generate latent pose targets for world model training.</p>
+    <details class="more">
+      <summary><span class="chev"></span><span class="lbl-shut">Details</span><span class="lbl-open">Hide details</span></summary>
+      <div class="more-body">
+        <p><strong>Constrained keypoint estimation.</strong> Low-resolution sprites and noisy backgrounds make direct pose estimation unreliable. Segment Anything Model (SAM) masks isolate each fighter and restrict keypoint localization to character pixels.</p>
+        <p><strong>Temporal pose supervision.</strong> A Kalman filter tracks keypoints across frames to reduce jitter and preserve consistency during fast animations. The resulting pose trajectories provide latent ground-truth targets for a predictive world model.</p>
+      </div>
+    </details>
     <div class="tags"><span>SAM</span><span>Pose</span><span>Kalman Filter</span></div>
   </div>
 
@@ -592,6 +600,13 @@ footer a:hover { color: var(--accent); border-bottom-color: var(--accent); }
       <div class="entry-title">Deep vision architectures from scratch</div>
     </div>
     <p class="note">VGG-16/19, ResNet-50 and Vision Transformers implemented end to end in PyTorch, attention included. Comparative study of CNN inductive biases against ViT global receptive fields via gradient flow monitoring.</p>
+    <details class="more">
+      <summary><span class="chev"></span><span class="lbl-shut">Details</span><span class="lbl-open">Hide details</span></summary>
+      <div class="more-body">
+        <p><strong>Architecture and training.</strong> Implemented the layers and attention mechanisms of VGG-16/19, ResNet-50 and Vision Transformers from scratch in PyTorch. Trained with SGD with momentum and AdamW, using cosine-annealed learning rates, batch normalisation and label smoothing.</p>
+        <p><strong>Comparative analysis.</strong> Monitored gradient flow to compare CNN translation invariance with ViT global receptive fields, and evaluated the trained models using Top-1 and Top-5 accuracy.</p>
+      </div>
+    </details>
     <div class="tags"><span>PyTorch</span><span>ViT</span><span>ResNet</span></div>
   </div>
 </section>
